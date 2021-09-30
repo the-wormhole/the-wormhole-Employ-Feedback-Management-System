@@ -1,0 +1,35 @@
+Admin
+- Name: string
+- Email: string
+- Password: string
+- EmpId : Mongoose Object Id type 
+- createEmploy(): Employ
+- deleteEmploy(): void
+- updateEmploy(): Employ
+- AddReview(): Performance
+- deleteReview(): void
+- updateReview(): Performance
+- AddParticipant(): void
+- makeAdmin(): void
+
+Employ
+- Name: string
+- Email: string
+- password: string
+- isAdmin: boolean (private)
+- reviewParticipation: Array (Contains all the performance reviews it can participate in)
+- addFeeback(): FeedBack
+- deleteOwnFeedback(): void
+
+Performance 
+- Employ_Name: string(optional)
+- EmpId: Mongoose Object Id type
+- Rating: 0 to 10(int)
+- review: string 
+- Feedbacks: Array
+
+FeedBack
+- Content: string
+- Employ_Name: string(optional)
+- performanceId: Mongoose Object Id type
+- byEmploy: Mongoose Object Id type
