@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= employ.Name %></title>
+</head>
+<body>
+    <h3>Performance Review</h3>
+    <!-- If the performance has never been reviewed, then this form is displayed -->
+    <b>Employ Name: </b><span><%= employ.Name %></span>
+    <% if(!perform){ %> 
+        <form action="/performance/create/<%= employId %>" method="POST">
+            Rating(1 to 10): <input type="number" name="rating" required min="1" max="10"><br>
+            Review: <textarea name="review" id="review" cols="30" rows="10" required placeholder="Enter the review..."> </textarea><br>
+            
+            <button type="submit">Submit</button>
+        </form>
+    <% }else{ %>
+        <!-- If performance is reviewed, then this form is displayed -->
+        <form action="/performance/update/<%= employId %>" method="POST">
+            Rating(1 to 10): <input type="number" name="rating" required min="1" max="10" value="<%= perform.rating %>"><br>
+            Review: <textarea name="review" id="review" cols="30" rows="10" required placeholder="Enter the review..."><%= perform.review %></textarea><br>
+            <button type="submit">Update</button>
+        </form>
+        
+    <% } %>
+</body>
+</html>

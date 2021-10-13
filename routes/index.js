@@ -6,5 +6,6 @@ const passport = require('passport');
 router.get('/',passport.checkAuthentication,homeController.home);
 router.use('/employ',require('./employ'));
 router.use('/admin',require('./admin'));
+router.use('/performance',require('./performance'));
 
 module.exports = router;

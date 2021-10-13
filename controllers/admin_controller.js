@@ -1,6 +1,8 @@
 const e = require('express');
 const Admin = require('../models/admin');
 const Employ = require('../models/employ');
+const Performance = require('../models/performance');
+
 exports.create = async function(req,res){
 
     //let newAdmin = Admin.create
@@ -54,14 +56,14 @@ module.exports.createSession = function(req,res){
 
 module.exports.home = async function(req,res){
     
-    //
     let userPrototype =  Object.getPrototypeOf(res.locals.user);      
-    console.log('here',res.locals.user);
     if(userPrototype == Admin.prototype || res.locals.user.isAdmin ){         //Checking if the person accessing the admin home is actually an admin
 
         let employs = await Employ.find();
+        let reviews = await Performance.find();
         return res.render('admin_home',{
-            employs:employs
+            employs:employs,
+            reviews:reviews
         });
     }else{
         console.log('not an Admin!!');
@@ -77,10 +79,10 @@ module.exports.destroySession = function(req,res){
 
 module.exports.allEmploys = async function(req,res){     //Renders page containing all employees list
 
-    //if(req.isAuthenticated()){
+    
     let userPrototype =  Object.getPrototypeOf(res.locals.user);      
-    //console.log('here',res.locals.user);
-    if(userPrototype == Admin.prototype || res.locals.user.isAdmin ){ 
+    if(userPrototype == Admin.prototype || res.locals.user.isAdmin ){   //Checking if the person accessing is actually an admin
+
         let employ = await Employ.find();
         res.render('all_employess',{
             employs:employ
@@ -100,9 +102,11 @@ module.exports.newAdmin = async function(req,res){
         let emp = await Employ.findById(empId);     // Retreiving the employ from his id and making him an Admin
 
                              
-        emp.save();                                 // Saving the changes made to employ object
-        if(!emp.isAdmin){
+
+        if(!emp.isAdmin){                           // Checking if emp is an Admin or not
+            
             emp.isAdmin = true;
+            emp.save();                                 // Saving the changes made to employ object
             Admin.create({
                 Name:emp.Name,
                 emp_id:empId,
@@ -167,11 +171,11 @@ module.exports.view = async function(req,res){                              //Fu
     try{
         let empId = req.params.id;
         let userPrototype =  Object.getPrototypeOf(res.locals.user);      
-        //console.log('here',res.locals.user);
+
         if(userPrototype == Admin.prototype || res.locals.user.isAdmin ){       // Checking if it is the admin that is viewing the employ information
             
             let employ = await Employ.findById(empId);
-            //console.log(employ);
+
             return res.render('employ-view',{
                 employ:employ
             });
@@ -190,7 +194,7 @@ module.exports.employUpdate = async function(req,res){
     
     let empId = req.params.id;
     let userPrototype =  Object.getPrototypeOf(res.locals.user);      
-    //console.log('here',res.locals.user);
+
     try{
         if(userPrototype == Admin.prototype || res.locals.user.isAdmin ){ 
             
