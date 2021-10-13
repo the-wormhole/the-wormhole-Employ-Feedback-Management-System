@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=
+    , initial-scale=1.0">
+    <title>Admin Home</title>
+</head>
+<body>
+    <h2>Admin Home</h2>
+    <div>
+        <ul style="list-style: none;">
+            <% for(let employ of employs){ %>   
+                <!-- An Admin can't write his own performance review -->
+               <% if(locals.user.Email != employ.Email){%>  
+                <li>
+                    <span>Name: <%= employ.Name %></span>
+                    <span>Email: <%= employ.Email %></span>
+                </li>
+               <% } %>
+
+            <% } %>
+        </ul>
+    </div>
+    <div class="admin-operation">
+        <ul style="list-style: none;">
+            <li>
+                <a href="/admin/create-admin">Make a new Admin</a>
+            </li>
+            <li>
+                <!-- giving the same route of all employs -->
+                <a href="/admin/delete-employ">Delete an employ</a> 
+            </li>
+            <li>
+                <a href="/admin/new-employ">Add a new Employ</a>
+            </li>
+        </ul>
+    </div>
+
+</body>
+</html>

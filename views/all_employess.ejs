@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Make Admin</title>
+    <style>
+        .emp{
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            height: 10vh;
+            background-color: rgb(200, 209, 209);
+            margin-bottom: 5px;
+            box-sizing: border-box;
+        }
+        .emp-name{
+            font-size: 1.2rem;
+            margin-top: 10px;
+            margin-left: 0.5%;
+        }
+        .emp-btn{
+            margin-top: 3%;
+            margin-right: 10%;
+        }
+        .admin{
+            margin-left: 20px;
+            
+            background-color:purple;
+            color:white;
+            border-radius: 10%;
+            padding: 3px;
+        }
+    </style>
+</head>
+<body>
+    <section>
+        <h2>Employees List</h2>
+        <% for(let employ of employs){%>
+        <div class="emp">
+            <div class="emp-name">
+                <b><%= employ.Name %></b> <%if(employ.isAdmin){%><span class="admin">Admin<%if(locals.user.emp_id == employ.id){%>(You)<%}%></span><%}%>
+            </div>
+            <div class="emp-btn">
+                <!-- Display only if employ is not an Admin -->
+                <%if(!employ.isAdmin){%>      
+                    <a href="/admin/view/<%=employ.id%>"><button type="submit">View</button></a>                               
+                    <a href="/admin/make/<%=employ.id%>"><button type="submit">Make Admin</button></a>
+                    <a href="/admin/delete/<%=employ.id%>"><button type="submit">Delete</button></a>
+                <%}%>
+            </div>
+        </div>
+        <%}%>
+    </section>
+</body>
+</html>

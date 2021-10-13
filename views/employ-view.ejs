@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= employ.Name%></title>
+    <style>
+        .view-container{
+            background-color: blueviolet;
+            color: white;
+            font-size: 1.2rem;
+            width: 35%;
+            /* height: 20vh; */
+            padding : 1%;
+        }
+        ul{
+            list-style: none;
+        }
+        body{
+            height: 100vhs;
+            padding: 7% 0 0 30%;
+            box-sizing:border-box;
+
+        }
+        .update-form{
+            margin-top: 2%;
+        }
+    </style>
+</head>
+<body>
+    <div class="view-container">
+        <ul>
+            
+            <li><b>Name:</b> <%= employ.Name%></li>
+
+            
+            <li><b>Email:</b> <%= employ.Email %></li>
+
+            
+            <li><b>isAdmin:</b> <%= employ.isAdmin %></li>
+        </ul>
+    </div>
+    <div class="update-form">
+        <form action="/admin/employ/update/<%= employ.id %>" method="POST">
+            Email: <input type="Email" name = "Email" required placeholder="Enter Email.." value="<%= employ.Email %>">
+            Name: <input type="text" name = "Name" placeholder="Enter Name.." value="<%= employ.Name %>">
+            <button type="submit">Update</button>
+        </form>
+    </div>
+</body>
+</html>

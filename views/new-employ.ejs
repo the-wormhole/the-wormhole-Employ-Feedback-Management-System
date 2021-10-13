@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add New Employ</title>
+    <style>
+        .form-styling input{
+            margin: 10px;
+            padding: 5px;
+            
+        }
+        .form-color{
+            background-color: gray;
+            padding: 2%;
+        }
+        .button-styling{
+            background-color: black;
+            color: white;
+            padding: 0 5% 0 5%;
+            height: 1.8rem;
+            font-size: 1.2rem;
+            border-radius: 15%;
+            border: 0;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="employ-signUp" class="form-color">
+        <h2>Employ SignUp</h2>
+        <form action="/employ/create" method="POST" class="form-styling">
+            Employ Name:<input type="text" name="Name" placeholder="Enter Employ name.." required><br>
+            Employ Email:<input type="email" name="Email" placeholder="Enter Employ email .. " required><br>
+            Password:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="password" name="password" placeholder="Enter temporary password .." required><br>
+            Confrim Password<input type="password" name="confirmPassword" placeholder="Confirm Password.." required><br>
+            <p style="text-align:center;">
+                <button type="submit" class="button-styling">Submit</button>
+            </p>
+
+        </form>
+        
+    </div>
+</body>
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .form-container{
+            display: flex;
+            justify-content: space-around;
+            background-color: purple;
+            width: 70%;
+            margin-left: 15%;
+            margin-top: 20vh;
+            padding-top: 5vh;
+            padding-bottom: 5vh;
+            color: white;
+            font-size: 1.2rem;
+        }
+        .form-styling input{
+            margin: 10px;
+            padding: 5px;
+            
+        }
+        .form-color{
+            background-color: gray;
+            padding: 2%;
+        }
+        .button-styling{
+            background-color: black;
+            color: white;
+            padding: 0 5% 0 5%;
+            height: 1.8rem;
+            font-size: 1.2rem;
+            border-radius: 15%;
+            border: 0;
+        }
+    </style>
+    <title>SignUp</title>
+</head>
+<body>
+    
+    <section class="form-container" >
+        <!-- Employ Sign Up -->
+        <div id="employ-signUp" class="form-color">
+            <h2>Employ SignUp</h2>
+            <form action="/employ/create" method="POST" class="form-styling">
+                Employ Name:<input type="text" name="Name" placeholder="Enter your name.." required><br>
+                Employ Email:<input type="email" name="Email" placeholder="Enter your email .. " required><br>
+                Password:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="password" name="password" placeholder="Enter password .." required><br>
+                Confrim Password<input type="password" name="confirmPassword" placeholder="Confirm Password.." required><br>
+                <p style="text-align:center;">
+                    <button type="submit" class="button-styling">Submit</button>
+                </p>
+
+            </form>
+            <a href="/employ/sign-in" style="color: white; ">Employ LogIn</a>
+        </div>
+        <!-- Admin Sign Up -->
+
+        <!-- This form can be uncommented to create a new Admin -->
+
+        <!-- <div id="admin-signUp">
+            <h2>Admin SignUp</h2>
+            <form action="/admin/create" method="POST">
+                Admin Name:<input type="text" name="Name" placeholder="Enter your name.." required><br>
+                Admin Email:<input type="email" name="Email" placeholder="Enter your email .. " required><br>
+                Password<input type="password" name="password" placeholder="Enter password .." required><br>
+                Confirm Password<input type="password" name="confirmPassword" placeholder="Confirm Password.." required><br>
+                <button type="submit">Submit</button>
+            </form>
+        </div> -->
+
+        <div id="admin-login" class="form-color" >
+            <h2>Admin Login</h2>
+            <form action="/admin/create-session" method="POST" class="form-styling" >
+
+                Admin Email:<input type="text" placeholder="Enter your email!" name="Email" required><br>
+                Password:<input type="password" placeholder="Enter the password" name ="password" required>
+                <p style="text-align: center;">
+                    <button type="submit" class="button-styling">Submit</button>
+                </p>
+            </form>
+            <p> 
+                <!-- <b>Are you <a href ='/admin/sign-up'>Signed Up</a>!?</b> -->
+            </p>
+        </div>
+    </section>
+</body>
+</html>
