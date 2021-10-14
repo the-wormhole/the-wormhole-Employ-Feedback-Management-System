@@ -1,0 +1,16 @@
+    <% for(let employ of employs){ %> 
+        <!--  -->
+        <% if(employ.id != locals.user.emp_id){ %>  <!-- An Admin can't assign a review to himself for feedback -->
+            <!-- <% for(let e_id of rev.EmployFeedback){ %> -->
+                <!-- <% if(e_id != employ.id){ %>        Checking if review is already assigned to the employ or not, preventing it from getting assigned multiple times to the same employ -->
+                    <div>
+                        <span><b>Employ Name:</b>&nbsp; <%= employ.Name %></span>
+                        <span><b>Employ Email:</b>&nbsp; <%= employ.Email %></span>   
+                        <a href="/performance/assign/<%= employ.id %>/<%= rev.id %>"><button type="submit">Assign</button></a>
+                    </div>
+                <!-- <% } %> -->
+                <h2><%= rev %></h2>
+            <!-- <% } %> -->
+        <% } %>
+
+    <% } %>

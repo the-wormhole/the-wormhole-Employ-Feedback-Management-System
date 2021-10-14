@@ -71,5 +71,56 @@ module.exports.update = async function(req,res){        // Update an existing em
         }
     }catch(err){
         console.log(err,'Error in updating the performance review!!');
+        return;
+    }
+}
+
+module.exports.assignView = async function(req,res){
+
+    try{
+        let userPrototype =  Object.getPrototypeOf(res.locals.user);
+        if(userPrototype == Admin.prototype || res.locals.user.isAdmin ){       // Only an admin can add a review
+
+            let PId = req.params.id;
+            let employs = await Employ.find({participations:{$ne:PId}});        //Finding the employs that are not assigned to the review already
+            let review = await Performance.findById(PId);
+
+            return res.render('assign-view',{
+                employs:employs,
+                rev:review
+            })
+        }else{
+            console.log('The user is not an Admin!!')
+            return res.redirect('back');
+        }
+    }catch(err){
+        console.log(err,'Error in opening Feedback Assign page!');
+        return;
+    }
+}
+
+module.exports.assign = async function(req,res){
+    
+    try{
+
+        let userPrototype =  Object.getPrototypeOf(res.locals.user);
+        if(userPrototype == Admin.prototype || res.locals.user.isAdmin ){       // Only an admin can add a review
+
+            let RId = req.params.Revid;
+            let EId = req.params.Empid;                                         
+
+            let employ = await Employ.findById(EId)                         //Searching the Employ by his id and pushing the review id into the participations array
+            await employ.participations.push(RId);
+            employ.save();
+            console.log('Review assigned to:',employ.Name);
+            return res.redirect('back');
+
+        }else{
+            console.log('The user is not an Admin!!')
+            return res.redirect('back');
+        }
+    }catch(err){
+        console.log(err,'Error in Assigning a revew!!');
+        return;
     }
 }

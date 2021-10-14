@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=
     , initial-scale=1.0">
     <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css">
     <style>
         body{
             margin: 0;
@@ -27,7 +28,6 @@
         }
         .links{
             display: inline-block;
-            width: 32%;
         }
         .links a{
             color: black;
@@ -72,14 +72,15 @@
                     </div>
                     <div class="links">
                         <a href="/performance/view/<%= employ.id %>"><span>Add/Edit Review</span></a>
-                        &nbsp;&nbsp;&nbsp;<a href=""><span>Assign a Review</span></a>
+                        
                     </div>
-                    <div class="review">
+                    <div class="review links">
                         <% for(let rev of reviews){ %>
                                                                 <!-- Searching for this particular employs review to display -->
                             <% if(rev.EmpId == employ.id){%> 
-                                <b>Rating:</b>&nbsp;<span><%= rev.rating %></span>
+                                <b>Rating:</b>&nbsp;<span><%= rev.rating %></span> <i class="fa fa-star"></i>
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Review:&nbsp;</b><span><%= rev.review %></span>
+                                &nbsp;&nbsp;&nbsp;<a href="/performance/assign/view/<%= rev.id %>"><span>Assign an Employee</span></a>
                             <% } %>
                         <% } %>
                         
@@ -104,7 +105,7 @@
                 <a href="/admin/new-employ">Add a new Employ</a>
             </li>
         </ul>
-    </div>
+    </aside>
 
 </body>
 </html>

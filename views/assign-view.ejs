@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assign Review</title>
+</head>
+<body>
+
+    <% if(employs.length == 1){ %>          <!-- If all Employees assigned except the admin himself then display this message -->
+        <p>All employs assigned for feedback!</p>
+    <% } %>
+    <% for(let employ of employs){ %> 
+        <!--  -->
+        <% if(employ.id != locals.user.emp_id){ %>  <!-- An Admin can't assign a review to himself for feedback -->
+
+                    <div>
+                        <span><b>Employ Name:</b>&nbsp; <%= employ.Name %></span>
+                        <span><b>Employ Email:</b>&nbsp; <%= employ.Email %></span>   
+                        <a href="/performance/assign/<%= employ.id %>/<%= rev.id %>"><button type="submit">Assign</button></a>
+                    </div>
+
+
+        <% } %>
+
+    <% } %>
+</body>
+</html>
