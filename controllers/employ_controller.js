@@ -1,6 +1,62 @@
 const Employ = require('../models/employ');
 const Admin = require('../models/admin');
+const Performance = require('../models/performance');
+const FeedBack = require('../models/feedback');
 // Creating New Employ 
+
+module.exports.home = async function(req,res){
+
+    //console.log(req.user.id);
+    try{
+        let EId = req.user.id;
+        let performance = await Performance.findOne({EmpId:EId})    //populating for displaying the review that the user received, along with the feedbacks
+        .populate({
+            path:'feedbacks',
+            options:{ sort: '-createdAt'},
+            populate:{
+                path:'byEmploy'
+            }
+        }).sort('-createdAt');                      //<<<<<<-------- For sorting the posts in reverse chronological order
+
+        //console.log(performance);
+
+        let employ = await Employ.findById(EId)             // populating for displaying the reviews assigned to this employ for adding a feedback
+        .populate({                                         //for populating the reviews followed by feedbacks
+            path:'participations',          
+            options:{ sort: '-createdAt'},
+            populate:{
+                path:'feedbacks',
+                options:{sort: '-createdAt'},
+                populate:{
+                    path:'byEmploy'
+                }
+            }
+        })                                 
+        .populate({                     
+            path:'participations',                  //for populating the employ inside the reviews
+            populate:{
+                path:'EmpId'
+            }
+        }).sort('-createdAt');
+        
+        return res.render('employ_home',{
+            perform:performance,
+            emp:employ
+        })
+    }catch(err){
+        console.log(err,'Error in displaying Employee home page!!');
+        return;
+    }
+    
+}
+
+module.exports.signUp = async function(req,res){
+    
+    return res.render('signUp');
+    
+    //return res.send('<h1> Hello</h1>');
+}
+
 module.exports.create = async function(req,res){
 
     if(req.body.password != req.body.confirmPassword){

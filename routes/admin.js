@@ -2,12 +2,13 @@ const express = require('express');
 const router = express.Router();
 const passport = require('passport');
 const adminController = require('../controllers/admin_controller');
-const homeController = require('../controllers/home_controller');
+//const homeController = require('../controllers/home_controller');
+const employController = require('../controllers/employ_controller');
 
 router.get('/home',passport.checkAuthentication,adminController.home);
 router.post('/create',adminController.create);
 router.get('/sign-in',adminController.signIn);
-router.get('/sign-up',homeController.signUp)
+router.get('/sign-up',employController.signUp)
 
 router.post('/create-session', 
 passport.authenticate( 'admin-local', {failureRedirect: '/admin/sign-in'})

@@ -4,12 +4,72 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
+    <title>Employ Dashboard</title>
+    <style>
+        .reviews{
+            display:inline-block,
+        }
+        .admins{
+            display: inline-block;
+            vertical-align: top;
+        }
+    </style>
 </head>
 <body>
-    <h3>Employ Home</h3>
+    <h1>Employ Dashboard</h1>
+    <h2><%= emp.Name %></h2>
     <%if(locals.user.isAdmin){%>
         <span><a href="/admin/sign-in">Switch to Admin login!?</a></span>
     <%}%>        
+    <div class="reviews-on-you">
+        <h3>Review recieved</h3>
+        <p>
+            <b>Rating recieved:</b><%=perform.rating%><br>
+            <b>Remarks:</b><%= perform.review %>
+        </p>
+        <div class="feedbacks">
+            <ul style="list-style-type: none;">
+                <% for(let feedback of perform.feedbacks){%> 
+                    <h4><%= feedback.byEmploy.Name %></h4>
+                    <p><%= feedback.content %></p>
+                <% } %>
+            </ul>
+        </div>
+    </div>
+    <div class="review-by-you">
+        <h3>Give Feedback</h3>
+        <ul style="list-style-type: none;">
+            <% for(let perform of emp.participations){%>
+            <li>
+                <p>
+                    <b>Employee Name:</b><%= perform.EmpId.Name %><br>
+                    <b>Rating:</b><%= perform.rating %><br>
+                    <b>Remarks:</b><%= perform.review %>
+                </p>
+                <form action="/feedback/add/<%= perform.id %>" method="post">
+                    <input type="text" name="content" placeholder="Enter feedback..." required>
+                    <button>Add</button>
+                </form>
+                <ul style="list-style-type: none;">
+                    <% for(let feed of perform.feedbacks){%>
+                        <li>
+                            <h4><%= feed.byEmploy.Name %></h4>
+                            <p>
+                                <%= feed.content %>
+                            </p>
+                            <% if(locals.user.id == feed.byEmploy.id){ %>
+                                <a href="/feedback/delete/<%= feed.id %>"><button>Delete</button></a>
+                            <% } %>
+                        </li>
+                    <% } %>
+                </ul>
+            </li>
+            <% } %>
+        </ul>
+    </div>
+
+    <aside class="admins">
+        
+    </aside>
 </body>
 </html>

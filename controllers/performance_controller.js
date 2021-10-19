@@ -82,7 +82,7 @@ module.exports.assignView = async function(req,res){
         if(userPrototype == Admin.prototype || res.locals.user.isAdmin ){       // Only an admin can add a review
 
             let PId = req.params.id;
-            let employs = await Employ.find({participations:{$ne:PId}});        //Finding the employs that are not assigned to the review already
+            let employs = await Employ.find({participations:{$ne:PId}});        //Finding the employs that are not assigned to add feedback to this review already
             let review = await Performance.findById(PId);
 
             return res.render('assign-view',{

@@ -7,13 +7,16 @@
     <title>Assign Review</title>
 </head>
 <body>
-
+    <p>
+        <b>Rating:</b><%= rev.rating %><br>
+        <b>Remarks:</b><%= rev.review %>
+    </p>
     <% if(employs.length == 1){ %>          <!-- If all Employees assigned except the admin himself then display this message -->
         <p>All employs assigned for feedback!</p>
     <% } %>
     <% for(let employ of employs){ %> 
         <!--  -->
-        <% if(employ.id != locals.user.emp_id){ %>  <!-- An Admin can't assign a review to himself for feedback -->
+        <% if(employ.id != locals.user.emp_id && employ.id != rev.EmpId){ %>  <!-- An Admin can't assign a review to himself for feedback and an employ can't review his own performance -->
 
                     <div>
                         <span><b>Employ Name:</b>&nbsp; <%= employ.Name %></span>
