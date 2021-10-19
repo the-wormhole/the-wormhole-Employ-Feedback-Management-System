@@ -23,21 +23,28 @@
     <%}%>        
     <div class="reviews-on-you">
         <h3>Review recieved</h3>
-        <p>
-            <b>Rating recieved:</b><%=perform.rating%><br>
-            <b>Remarks:</b><%= perform.review %>
-        </p>
-        <div class="feedbacks">
-            <ul style="list-style-type: none;">
-                <% for(let feedback of perform.feedbacks){%> 
-                    <h4><%= feedback.byEmploy.Name %></h4>
-                    <p><%= feedback.content %></p>
-                <% } %>
-            </ul>
-        </div>
+        <!-- Checking if the employ was reviewed or not -->
+        <% if(perform){ %> 
+            <p>
+                <b>Rating recieved:</b><%=perform.rating%><br>
+                <b>Remarks:</b><%= perform.review %>
+            </p>
+            <div class="feedbacks">
+                <ul style="list-style-type: none;">
+                    <% for(let feedback of perform.feedbacks){%> 
+                        <h4><%= feedback.byEmploy.Name %></h4>
+                        <p><%= feedback.content %></p>
+                    <% } %>
+                </ul>
+            </div>
+        <% }else{ %>
+            <p>You haven't recieved a review yet!!</p>
+        <% } %>
     </div>
     <div class="review-by-you">
         <h3>Give Feedback</h3>
+        <!-- Checking if any reviews were assigned or not -->
+        <% if(emp.participations.length > 0){ %> 
         <ul style="list-style-type: none;">
             <% for(let perform of emp.participations){%>
             <li>
@@ -66,6 +73,9 @@
             </li>
             <% } %>
         </ul>
+        <% }else{ %>
+            <p>No revews have been assigned to you yet!</p>
+        <% } %>
     </div>
 
     <aside class="admins">

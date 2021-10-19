@@ -55,7 +55,7 @@ module.exports.update = async function(req,res){        // Update an existing em
 
     try{
         let userPrototype =  Object.getPrototypeOf(res.locals.user);
-        if(userPrototype == Admin.prototype || res.locals.user.isAdmin ){       // Only an admin can add a review
+        if(userPrototype == Admin.prototype || res.locals.user.isAdmin ){       // Only an admin can update a review
 
             let EId = req.params.id;
             let performance = await Performance.findOne({EmpId:EId});
@@ -75,11 +75,11 @@ module.exports.update = async function(req,res){        // Update an existing em
     }
 }
 
-module.exports.assignView = async function(req,res){
+module.exports.assignView = async function(req,res){                        //Function to redirect to the page with a list of all employees that are not assigned to this performance yet
 
     try{
         let userPrototype =  Object.getPrototypeOf(res.locals.user);
-        if(userPrototype == Admin.prototype || res.locals.user.isAdmin ){       // Only an admin can add a review
+        if(userPrototype == Admin.prototype || res.locals.user.isAdmin ){       
 
             let PId = req.params.id;
             let employs = await Employ.find({participations:{$ne:PId}});        //Finding the employs that are not assigned to add feedback to this review already
@@ -104,7 +104,7 @@ module.exports.assign = async function(req,res){
     try{
 
         let userPrototype =  Object.getPrototypeOf(res.locals.user);
-        if(userPrototype == Admin.prototype || res.locals.user.isAdmin ){       // Only an admin can add a review
+        if(userPrototype == Admin.prototype || res.locals.user.isAdmin ){       // Only an admin can assign perfomance for reviews
 
             let RId = req.params.Revid;
             let EId = req.params.Empid;                                         
