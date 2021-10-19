@@ -42,10 +42,13 @@ module.exports.home = async function(req,res){
                     path:'EmpId'
                 }
             }).sort('-createdAt');
+
+            let admins = await Admin.find();
             
             return res.render('employ_home',{
                 perform:performance,
-                emp:employ
+                emp:employ,
+                admins:admins
             });
         }else{
 

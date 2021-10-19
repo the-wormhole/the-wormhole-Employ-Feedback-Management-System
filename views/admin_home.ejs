@@ -54,12 +54,18 @@
             color:whitesmoke;
             text-decoration: none;
         }
+        .heading{
+            background-color: purple; 
+            color: white; 
+            margin: 0; 
+            padding: 10px 0;
+        }
     </style>
 </head>
 <body>
     
     <div class="emp">
-        <h2>Admin Dashboard</h2>
+        <h2 class="heading">Admin Dashboard</h2>
         <ul style="list-style: none;" class="emp-list">
                                                             <!-- Displaying all employs to perform add/modify review options -->
             <% for(let employ of employs){ %>   
@@ -78,7 +84,11 @@
                         <% for(let rev of reviews){ %>
                                                                 <!-- Searching for this particular employs review to display -->
                             <% if(rev.EmpId == employ.id){%> 
-                                <b>Rating:</b>&nbsp;<span><%= rev.rating %></span> <i class="fa fa-star"></i>
+                                <b>Rating:</b>&nbsp;
+
+                                <span><% for(let i=1;i <= rev.rating;i++){ %><i class="fa fa-star"></i><% } %></span>
+                                <span style="color: grey; margin-left: -5px;"><% for(let i = rev.rating + 1;i <= 10;i++){ %><i class="fa fa-star"></i><% } %></span>
+                                
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Review:&nbsp;</b><span><%= rev.review %></span>
                                 &nbsp;&nbsp;&nbsp;<a href="/performance/assign/view/<%= rev.id %>"><span>Assign an Employee</span></a>
                             <% } %>
