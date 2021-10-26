@@ -1,0 +1,57 @@
+body{
+    margin: 0;
+    font-family: sans-serif;
+}
+.bg-grey{
+    background-color: lightgrey;
+}
+main{
+    display: inline-block;
+    width: 70%;
+    
+}
+header{
+    margin-bottom: 3px;
+}
+#content{
+    display: flex;  
+}
+.reviews-on-you, .review-by-you{
+    display:inline-block;
+    width:100%;
+    overflow: hidden;
+}
+.review-by-you{
+    margin-left: 2px;
+}
+#review-container{
+    height: 100%;
+    margin-top: 1%;
+    padding: 1%;
+}
+.admins{
+    display: inline-block;
+    vertical-align: top;
+    width: 30%;
+    background-color: purple;
+    color: white;
+    position: fixed;
+    height: 100vh;
+}
+.heading{
+    background-color: purple; 
+    color: white; 
+    margin: 0; 
+    padding: 10px 0;
+
+}
+#feedback-list{
+    margin-top: 1%;
+    list-style-type: none;
+    padding: 0;
+    margin-bottom: 0;
+}
+#feedback-list li{
+    margin-bottom: 1%;
+    padding: 1%;
+}
