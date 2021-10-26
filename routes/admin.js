@@ -25,5 +25,5 @@ router.get('/new-employ',adminController.employForm);                       //Ne
 
 router.get('/view/:id',adminController.view);                               //View an Employ
 
-router.post('/employ/update/:id',adminController.employUpdate)
+router.post('/employ/update/:id',adminController.employUpdate)              //For Updation of employ info
 module.exports = router;

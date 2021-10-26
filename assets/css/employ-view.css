@@ -1,0 +1,44 @@
+body{
+    font-family: sans-serif;
+}
+main{
+    padding: 7% 0 0 30%;
+    height: 100vh;
+}
+.view-container{
+    background-color: blueviolet;
+    color: white;
+    font-size: 1.2rem;
+    width: 35%;
+    box-sizing:border-box;
+    padding : 1%;
+}
+ul{
+    list-style: none;
+}
+.update-form{
+    margin-top: 2%;
+}
+.btn{
+    background-color: blueviolet;
+    color: white;
+    border: 0;
+    padding: 1%;
+    font-family: sans-serif;
+    font-size: large;
+    border-radius: 10%;
+    margin: 1% 0 0 15%;
+}
+.btn:hover{
+    background-color: purple;
+}
+.links{
+    text-decoration: none;
+    color:rgb(143, 48, 231);
+    font-weight: bold;
+}
+.links:hover{
+    color: black;
+    text-decoration:underline;
+
+}

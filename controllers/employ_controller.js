@@ -45,10 +45,13 @@ module.exports.home = async function(req,res){
 
             let admins = await Admin.find();
             
+            let employs = await Employ.find();
+
             return res.render('employ_home',{
                 perform:performance,
                 emp:employ,
-                admins:admins
+                admins:admins,
+                employs:employs
             });
         }else{
 
@@ -126,4 +129,22 @@ module.exports.destroySession = function(req,res){
 
     req.logout();                                   //<<<<<<<<----------- This function is supplied by passport into the req
     return res.redirect('/');
+}
+
+module.exports.view = async function(req,res){                              //Function to view employ
+
+    try{
+        let empId = req.params.id;     
+            
+        let employ = await Employ.findById(empId);
+
+        return res.render('employ-view',{
+            employ:employ
+        });
+
+    }catch(err){
+
+        console.log('Error in viewing Employ!!');
+        return;
+    }
 }

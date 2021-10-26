@@ -5,13 +5,25 @@ body{
 .bg-grey{
     background-color: lightgrey;
 }
+.links{
+    text-decoration: none;
+    color:rgb(143, 48, 231);
+}
+.links:hover{
+    color: black;
+    text-decoration:underline;
+}
 main{
     display: inline-block;
     width: 70%;
-    
 }
 header{
     margin-bottom: 3px;
+}
+.name-container{
+    display: flex;
+    padding: 0 10px;
+    justify-content: space-between;
 }
 #content{
     display: flex;  

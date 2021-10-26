@@ -7,18 +7,26 @@
     <title>Employ Dashboard</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css">
     <link rel="stylesheet" href="/css/employ_home.css">
-    <style>
-        
-    </style>
+
 </head>
 <body>
     <main>
         <header class="bg-grey">
-            <h1 class="heading">Employ Dashboard</h1>
-            <h2 style="margin-bottom: 0; padding-bottom: 5px;"><%= emp.Name %></h2>
-            <%if(locals.user.isAdmin){%>
-                <span><a href="/admin/sign-in">Switch to Admin login !?</a></span>
-            <%}%>     
+            <div>
+                <h1 class="heading">Employ Dashboard</h1>
+            </div>
+            <div class="name-container">
+                <div>
+                    <h2 style="margin-bottom: 0; padding-bottom: 5px;"><%= emp.Name %></h2>
+                    <%if(locals.user.isAdmin){%>
+                        <span><a class="links" href="/admin/sign-in" >Switch to Admin login !?</a></span>
+                    <%}%>
+                </div>
+                <div style="padding:20px 0;">
+                        <a style="margin-right: 10px" class = "links" href="/employ/view/<%= emp.id %>">Profile</a>
+                        <a class ="links" href="/employ/sign-out"> Sign Out</a>
+                </div>
+            </div>     
         </header>
 
         <section id="content">
@@ -94,19 +102,37 @@
             </div>
         </section>
     </main>
-    <aside class="admins">
+    <aside class="admins" style="overflow-y: scroll;">
         <!-- There will always be one admin -->
-        <h2>Admins</h2>
-        <hr>
-        <ul style="list-style-type: none;">
-            <% for(let admin of admins){ %>
-                <li>
-                    <b>Name:</b><%= admin.Name %><br>
-                    <b>Email:</b><%= admin.Email %>
-                </li>
-                <hr>
-            <% } %>
-        </ul>
+        <div>
+            <h2>Admins</h2>
+            <hr>
+            <ul style="list-style-type: none;">
+                <% for(let admin of admins){ %>
+                    <li>
+                        <b>Name:</b><%= admin.Name %><br>
+                        <b>Email:</b><%= admin.Email %>
+                    </li>
+                    <hr>
+                <% } %>
+            </ul>
+        </div>
+        <div>
+            <h2>Employs</h2>
+            <hr>
+            <ul style="list-style-type: none;">
+                <% for(let employ of employs){ %>
+                    <% if(emp.Email != employ.Email){ %>
+                        <li>
+                            <b>Name:</b><%= employ.Name %><br>
+                            <b>Email:</b><%= employ.Email %>
+                        </li>
+
+                    <hr>
+                    <% } %>
+                <% } %>
+            </ul>
+        </div>
     </aside>
 </body>
 </html>
