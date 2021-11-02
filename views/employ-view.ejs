@@ -25,7 +25,8 @@
                 <li><b>Admin:</b> <% if(employ.isAdmin){ %> Yes <% }else{ %> No <% } %></li>
             </ul>
         </div>
-        <% if(employ.isAdmin){ %>
+
+        <% if(locals.user.isAdmin ||employ.id == locals.user.id  || locals.user.collection.modelName == 'Admin'){ %>                          <!-- Only an Admin or the Employ itself can view this form-->
             <div class="update-form">
                 <form action="/admin/employ/update/<%= employ.id %>" method="POST">
                     Email: <input type="Email" name = "Email" required placeholder="Enter Email.." value="<%= employ.Email %>">

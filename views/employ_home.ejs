@@ -32,8 +32,9 @@
         <section id="content">
             <div class="reviews-on-you">
                 <h3 style="margin:0; padding:1%;" class="bg-grey">Review recieved</h3>
-                <!-- Checking if the employ was reviewed or not -->
+
                 <div class="bg-grey" id="review-container">
+                    <!-- Checking if the employ was reviewed or not -->
                     <% if(perform){ %> 
                         <p>
                             <b>Rating recieved:</b>
@@ -45,9 +46,13 @@
                         </p>
                         <div class="feedbacks">
                             <ul style="list-style-type: none;">
-                                <% for(let feedback of perform.feedbacks){%> 
-                                    <h4><%= feedback.byEmploy.Name %></h4>
-                                    <p><%= feedback.content %></p>
+                                <% if(perform.feedbacks.length > 0){%>
+                                    <% for(let feedback of perform.feedbacks){%> 
+                                        <h4><%= feedback.byEmploy.Name %></h4>
+                                        <p><%= feedback.content %></p>
+                                    <% } %>
+                                <% }else{ %>
+                                    <b>No Feedback recieved yet!!</b>
                                 <% } %>
                             </ul>
                         </div>
@@ -80,16 +85,20 @@
                             <button>Add</button>
                         </form>
                         <ul style="list-style-type: none;">
-                            <% for(let feed of perform.feedbacks){%>
-                                <li>
-                                    <h4><%= feed.byEmploy.Name %></h4>
-                                    <p>
-                                        <%= feed.content %>
-                                    </p>
-                                    <% if(locals.user.id == feed.byEmploy.id){ %>
-                                        <a href="/feedback/delete/<%= feed.id %>"><button>Delete</button></a>
-                                    <% } %>
-                                </li>
+                            <% if(perform.feedbacks.length > 0 ){ %>
+                                <% for(let feed of perform.feedbacks){%>
+                                    <li>
+                                        <h4><%= feed.byEmploy.Name %></h4>
+                                        <p>
+                                            <%= feed.content %>
+                                        </p>
+                                        <% if(locals.user.id == feed.byEmploy.id){ %>
+                                            <a href="/feedback/delete/<%= feed.id %>"><button>Delete</button></a>
+                                        <% } %>
+                                    </li>
+                                <% } %>
+                            <% }else{ %>
+                                <b>No Feedbacks yet!!</b>
                             <% } %>
                         </ul>
                     </li>
@@ -124,7 +133,7 @@
                 <% for(let employ of employs){ %>
                     <% if(emp.Email != employ.Email){ %>
                         <li>
-                            <b>Name:</b><%= employ.Name %><br>
+                            <b>Name:</b><a href="/employ/view/<%= employ.id %>" style="text-decoration: none; color: white;"><%= employ.Name %></a><br>
                             <b>Email:</b><%= employ.Email %>
                         </li>
 

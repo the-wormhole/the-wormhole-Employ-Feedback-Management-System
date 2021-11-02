@@ -13,17 +13,17 @@ router.get('/sign-up',employController.signUp)
 router.post('/create-session', 
 passport.authenticate( 'admin-local', {failureRedirect: '/admin/sign-in'})
 ,adminController.createSession);
-router.get('/create-admin',adminController.allEmploys);                      //route to show a page with all employs
-router.get('/make/:id',adminController.newAdmin);
+router.get('/create-admin',passport.checkAuthentication,adminController.allEmploys);                      //route to show a page with all employs
+router.get('/make/:id',passport.checkAuthentication,adminController.newAdmin);
 
-router.get('/sign-out',adminController.destroySession);
+router.get('/sign-out',passport.checkAuthentication,adminController.destroySession);
 
 //routes for managing employs
-router.get('/delete-employ',adminController.allEmploys);                    //route to show a page with all employs
-router.get('/delete/:id',adminController.deleteEmploy);
-router.get('/new-employ',adminController.employForm);                       //New Employ form, employ being created by Admin
+router.get('/delete-employ',passport.checkAuthentication,adminController.allEmploys);                    //route to show a page with all employs
+router.get('/delete/:id',passport.checkAuthentication,adminController.deleteEmploy);
+router.get('/new-employ',passport.checkAuthentication,adminController.employForm);                       //New Employ form, employ being created by Admin
 
-router.get('/view/:id',adminController.view);                               //View an Employ
+router.get('/view/:id',passport.checkAuthentication,adminController.view);                               //View an Employ
 
-router.post('/employ/update/:id',adminController.employUpdate)              //For Updation of employ info
+router.post('/employ/update/:id',passport.checkAuthentication,adminController.employUpdate)              //For Updation of employ info
 module.exports = router;

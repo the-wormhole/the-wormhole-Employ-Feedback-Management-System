@@ -16,8 +16,8 @@
             width: 60%;
             display: inline-block;
         }
-        .emp-list li{
-            height: 7vh;
+        .emp-list > li{
+            height: auto;
             background-color: lightgray;
             margin-bottom: 1%;
             padding: 1rem;
@@ -37,6 +37,7 @@
             text-decoration: underline;
         }
         .review{
+            width: 100%;
             display: inline-block;
             margin-top: 2%;
         }
@@ -60,6 +61,13 @@
             margin: 0; 
             padding: 10px 0;
         }
+        .feed{
+            list-style-type: none;
+        }
+        .feed > li{
+            border-left: 1px solid darkgrey; 
+            padding:0 0 1.2rem 1rem;
+        }
     </style>
 </head>
 <body>
@@ -73,11 +81,11 @@
                <% if(locals.user.Email != employ.Email){%>  
                 <li>
                     <div class="details">
-                        <span>Name: <%= employ.Name %></span>
-                        <span>Email: <%= employ.Email %></span>
+                        <span><b>Name:</b> <%= employ.Name %></span>
+                        <span><b>Email:</b> <%= employ.Email %></span>
                     </div>
                     <div class="links">
-                        <a href="/performance/view/<%= employ.id %>"><span>Add/Edit Review</span></a>
+                        <a href="/performance/view/<%= employ.id %>"><span><b>Add/Edit Review</b></span></a>
                         
                     </div>
                     <div class="review links">
@@ -90,7 +98,26 @@
                                 <span style="color: grey; margin-left: -5px;"><% for(let i = rev.rating + 1;i <= 10;i++){ %><i class="fa fa-star"></i><% } %></span>
                                 
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Review:&nbsp;</b><span><%= rev.review %></span>
-                                &nbsp;&nbsp;&nbsp;<a href="/performance/assign/view/<%= rev.id %>"><span>Assign an Employee</span></a>
+                                &nbsp;&nbsp;&nbsp;<a href="/performance/assign/view/<%= rev.id %>"><span><b>Assign an Employee</b></span></a>
+                                <div>
+                                    <% if(rev.feedbacks.length > 0){%>                                     
+                                        <ul class="feed" >
+                                            <h3>Feedbacks</h3>
+                                            <% for(let feedback of rev.feedbacks){ %>
+                                                <li>
+                                                    <b><%= feedback.byEmploy.Name %></b><a style="padding-left: 90%;" href="/feedback/delete/<%= feedback.id %>"><i class="fa fa-remove"></i></a><br>
+                                                    <br>
+                                                    <span><%= feedback.content %></span>
+                                                    
+                                                </li>
+                                                <hr color="white">
+                                            <% } %>
+
+                                        </ul>
+                                    <% }else{ %>
+                                        <p><b> No feedbacks yet!</b></p>
+                                    <% } %>
+                                </div>
                             <% } %>
                         <% } %>
                         

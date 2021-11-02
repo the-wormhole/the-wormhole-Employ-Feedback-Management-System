@@ -1,6 +1,6 @@
 const FeedBack = require('../models/feedback');
 const Performance = require('../models/performance');
-
+const Admin = require('../models/admin');
 
 module.exports.add = async function(req,res){                   // function to add a new feedback
     try{
@@ -28,7 +28,9 @@ module.exports.delete = async function(req,res){            // fucntion to delet
     try{
         let FId = req.params.id;
         let feedback = await FeedBack.findById(FId);
-        if(feedback.byEmploy == req.user.id){               //to be deleted by the person who created it
+        let userPrototype =  Object.getPrototypeOf(res.locals.user);
+
+        if(feedback.byEmploy == req.user.id || res.locals.user.isAdmin || userPrototype == Admin.prototype){               //to be deleted by the person who created it or the Admin
 
             let PId = feedback.performance;
             feedback.remove();

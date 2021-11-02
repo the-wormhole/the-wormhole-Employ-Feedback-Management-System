@@ -1,6 +1,7 @@
 const e = require('express');
 const Admin = require('../models/admin');
 const Employ = require('../models/employ');
+const Feedback = require('../models/feedback');
 const Performance = require('../models/performance');
 
 exports.create = async function(req,res){
@@ -60,7 +61,15 @@ module.exports.home = async function(req,res){
     if(userPrototype == Admin.prototype || res.locals.user.isAdmin ){         //Checking if the person accessing the admin home is actually an admin
 
         let employs = await Employ.find();
-        let reviews = await Performance.find();
+        let reviews = await Performance.find()
+        .populate({
+            path:'feedbacks',
+            options:{ sort: '-createdAt'},
+            populate:{
+                path:'byEmploy'
+            }
+        }).sort('-createdAt');
+        
         return res.render('admin_home',{
             employs:employs,
             reviews:reviews
@@ -91,7 +100,7 @@ module.exports.allEmploys = async function(req,res){     //Renders page containi
         return res.redirect('/admin/sign-in');
     }
 
-    //
+
 }
 
 module.exports.newAdmin = async function(req,res){
@@ -139,7 +148,31 @@ module.exports.deleteEmploy = async function(req,res){
         if(userPrototype == Admin.prototype || res.locals.user.isAdmin ){ 
             let EmpId = req.params.id;
             let employ = await Employ.findByIdAndDelete(EmpId);
-            console.log('Employ deleted!!',employ);
+
+            let performance = await Performance.findOne({EmpId:EmpId});            // Deleting the Performance review of this Employee 
+            if(performance){
+                for(let feedback of performance.feedbacks){
+                    await Feedback.findByIdAndDelete(feedback);                        // Deleting the feedbacks he received on his performance review
+                }
+            }
+
+            await Employ.updateMany({},{$pull:{participations:performance.id}});       // Unassigning the Performance from employees
+            performance.remove();
+
+            //let feedbacks = await Feedback.deleteMany({byEmploy:EmpId});                // Deleting all the feedbacks given by the Employee
+            let feedback  = await Feedback.findOne({byEmploy:EmpId});
+            while(feedback){
+                await Performance.findByIdAndUpdate(feedback.performance,{$pull:{feedbacks:feedback.id}});  // removing it from the array of feedbacks
+                feedback.remove();
+                feedback  = await Feedback.findOne({byEmploy:EmpId});
+            }
+            // if(feedbacks.length > 0){
+            //     for(let feedback of feedbacks){
+            //         await Performance.findByIdAndUpdate(feedback.performance,{$pull:{feedbacks:feedback.id}});  // removing it from the array of feedbacks
+            //     }
+            // }
+            
+            console.log('Employ and associated reviews and feedbacks deleted!!',employ);
             return res.redirect('back');
         }else{
             return res.redirect('/admin/sign-in');
@@ -196,7 +229,7 @@ module.exports.employUpdate = async function(req,res){
     let userPrototype =  Object.getPrototypeOf(res.locals.user);      
 
     try{
-        if(userPrototype == Admin.prototype || res.locals.user.isAdmin ){ 
+        if(userPrototype == Admin.prototype || res.locals.user.isAdmin ){       // Only an Admin can update the information of other employees
             
             let employ = await Employ.findById(empId);
             employ.Name = req.body.Name;

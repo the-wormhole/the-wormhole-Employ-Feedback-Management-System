@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Make Admin</title>
     <style>
+        body{
+            font-family: sans-serif;
+        }
         .emp{
             display: flex;
             justify-content: space-between;
@@ -20,7 +23,7 @@
             margin-top: 10px;
             margin-left: 0.5%;
         }
-        .emp-btn{
+        .links{
             margin-top: 3%;
             margin-right: 10%;
         }
@@ -32,6 +35,14 @@
             border-radius: 10%;
             padding: 3px;
         }
+        .btn{
+            background-color: purple;
+            color: white;
+            border: 0;
+            border-radius: 10%;
+            padding: 1% 0.3rem 1%;
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
@@ -42,12 +53,12 @@
             <div class="emp-name">
                 <b><%= employ.Name %></b> <%if(employ.isAdmin){%><span class="admin">Admin<%if(locals.user.emp_id == employ.id){%>(You)<%}%></span><%}%>
             </div>
-            <div class="emp-btn">
+            <div class="links">
                 <!-- Display only if employ is not an Admin -->
                 <%if(!employ.isAdmin){%>      
-                    <a href="/admin/view/<%=employ.id%>"><button type="submit">View</button></a>                               
-                    <a href="/admin/make/<%=employ.id%>"><button type="submit">Make Admin</button></a>
-                    <a href="/admin/delete/<%=employ.id%>"><button type="submit">Delete</button></a>
+                    <a href="/admin/view/<%=employ.id%>"><button type="submit" class="btn">View</button></a>                               
+                    <a href="/admin/make/<%=employ.id%>"><button type="submit" class="btn">Make Admin</button></a>
+                    <a href="/admin/delete/<%=employ.id%>"><button type="submit" class="btn">Delete</button></a>
                 <%}%>
             </div>
         </div>
