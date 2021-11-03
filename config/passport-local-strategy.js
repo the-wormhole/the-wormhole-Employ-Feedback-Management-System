@@ -12,12 +12,9 @@ passport.use('admin-local',new LocalStrategy({      // Local Strategy for admin
     Admin.findOne({Email:Email},function(err,admin){
         if(err){
             console.log("Error in finding admin --> Passport");
-            req.flash('error',err);
             return done(err);
         }
         if(!admin || admin.password != password){
-            //req.flash('error','Invalid Email Id/ Password')
-            //console.log("Incorrect Username / Password");
             return done(null,false,{message:"Incorrect Username / Password"});
         }
 

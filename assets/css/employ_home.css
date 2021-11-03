@@ -41,6 +41,12 @@ header{
     margin-top: 1%;
     padding: 1%;
 }
+/* .feedbacks{
+    padding-left: ;
+} */
+.feedbacks ul{
+    border-left: 1px solid darkgray;
+}
 .admins{
     display: inline-block;
     vertical-align: top;
@@ -62,8 +68,10 @@ header{
     list-style-type: none;
     padding: 0;
     margin-bottom: 0;
+    
 }
 #feedback-list li{
     margin-bottom: 1%;
     padding: 1%;
+    
 }

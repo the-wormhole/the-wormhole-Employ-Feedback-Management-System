@@ -5,28 +5,38 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Assign Review</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css">
+    <link rel="stylesheet" href="/css/assign-view.css">
 </head>
 <body>
-    <p>
-        <b>Rating:</b><%= rev.rating %><br>
-        <b>Remarks:</b><%= rev.review %>
+    <p class="rating">
+        <span><b>Name:</b><%= rev.EmpId.Name %></span>
+        <span style="margin-left: 10%; "><b>Rating:</b>
+            <span><% for(let i=1;i <= rev.rating;i++){ %><i class="fa fa-star"></i><% } %></span>
+            <span style="color: grey; margin-left: -5px;"><% for(let i = rev.rating + 1;i <= 10;i++){ %><i class="fa fa-star"></i><% } %></span>
+        </span><br>
+        <span><b>Remarks:</b><%= rev.review %></span>
     </p>
-    <% if(employs.length == 1){ %>          <!-- If all Employees assigned except the admin himself then display this message -->
-        <p>All employs assigned for feedback!</p>
-    <% } %>
-    <% for(let employ of employs){ %> 
-        <!--  -->
-        <% if(employ.id != locals.user.emp_id && employ.id != rev.EmpId){ %>  <!-- An Admin can't assign a review to himself for feedback and an employ can't review his own performance -->
+    <div class="list-container">
+        <% if(employs.length == 1){ %>          <!-- If all Employees assigned except the admin himself then display this message -->
+            <p>All employs assigned for feedback!</p>
+        <% } %>
+        <% for(let employ of employs){ %> 
+            <!--  -->
+            <% if(employ.id != locals.user.emp_id && employ.id != rev.EmpId){ %>  <!-- An Admin can't assign a review to himself for feedback and an employ can't review his own performance -->
 
-                    <div>
-                        <span><b>Employ Name:</b>&nbsp; <%= employ.Name %></span>
-                        <span><b>Employ Email:</b>&nbsp; <%= employ.Email %></span>   
-                        <a href="/performance/assign/<%= employ.id %>/<%= rev.id %>"><button type="submit">Assign</button></a>
-                    </div>
+                        <div class="details">
+                            <div>
+                                <span><b>Employ Name:</b>&nbsp; <%= employ.Name %></span>
+                                <span><b>Employ Email:</b>&nbsp; <%= employ.Email %></span>   
+                            </div>
+                            <div style="margin-left:5%"><a href="/performance/assign/<%= employ.id %>/<%= rev.id %>"><button class="btn"type="submit">Assign</button></a></div>
+                        </div>
+                        <hr color="white">
 
+            <% } %>
 
         <% } %>
-
-    <% } %>
+    </div>
 </body>
 </html>

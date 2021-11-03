@@ -5,49 +5,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Make Admin</title>
-    <style>
-        body{
-            font-family: sans-serif;
-        }
-        .emp{
-            display: flex;
-            justify-content: space-between;
-            width: 100%;
-            height: 10vh;
-            background-color: rgb(200, 209, 209);
-            margin-bottom: 5px;
-            box-sizing: border-box;
-        }
-        .emp-name{
-            font-size: 1.2rem;
-            margin-top: 10px;
-            margin-left: 0.5%;
-        }
-        .links{
-            margin-top: 3%;
-            margin-right: 10%;
-        }
-        .admin{
-            margin-left: 20px;
-            
-            background-color:purple;
-            color:white;
-            border-radius: 10%;
-            padding: 3px;
-        }
-        .btn{
-            background-color: purple;
-            color: white;
-            border: 0;
-            border-radius: 10%;
-            padding: 1% 0.3rem 1%;
-            font-weight: bold;
-        }
-    </style>
+    <link rel="stylesheet" href="/css/allemp.css">
 </head>
 <body>
     <section>
-        <h2>Employees List</h2>
+        <div class="head" >
+            <h2>Employees List</h2>
+            <div class ="home">
+                <a href="/admin/home"> Home</a>
+            </div>
+        </div>
         <% for(let employ of employs){%>
         <div class="emp">
             <div class="emp-name">
@@ -56,7 +23,7 @@
             <div class="links">
                 <!-- Display only if employ is not an Admin -->
                 <%if(!employ.isAdmin){%>      
-                    <a href="/admin/view/<%=employ.id%>"><button type="submit" class="btn">View</button></a>                               
+                    <a href="/employ/view/<%=employ.id%>"><button type="submit" class="btn">View</button></a>                               
                     <a href="/admin/make/<%=employ.id%>"><button type="submit" class="btn">Make Admin</button></a>
                     <a href="/admin/delete/<%=employ.id%>"><button type="submit" class="btn">Delete</button></a>
                 <%}%>

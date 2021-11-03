@@ -83,7 +83,8 @@ module.exports.assignView = async function(req,res){                        //Fu
 
             let PId = req.params.id;
             let employs = await Employ.find({participations:{$ne:PId}});        //Finding the employs that are not assigned to add feedback to this review already
-            let review = await Performance.findById(PId);
+            let review = await Performance.findById(PId)
+            .populate({path:'EmpId'});
 
             return res.render('assign-view',{
                 employs:employs,

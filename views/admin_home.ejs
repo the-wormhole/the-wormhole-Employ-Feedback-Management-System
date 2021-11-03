@@ -7,73 +7,22 @@
     , initial-scale=1.0">
     <title>Admin Dashboard</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css">
-    <style>
-        body{
-            margin: 0;
-            font-family: sans-serif;
-        }
-        .emp{
-            width: 60%;
-            display: inline-block;
-        }
-        .emp-list > li{
-            height: auto;
-            background-color: lightgray;
-            margin-bottom: 1%;
-            padding: 1rem;
-        }
-        .details{
-            display: inline-block;
-            width: 60%;
-        }
-        .links{
-            display: inline-block;
-        }
-        .links a{
-            color: black;
-            text-decoration: none;
-        }
-        .links a:hover{
-            text-decoration: underline;
-        }
-        .review{
-            width: 100%;
-            display: inline-block;
-            margin-top: 2%;
-        }
-        .admin-operation{
-            border-left: 1px solid black;
-            height: 100vh;
-            vertical-align: top;
-            display: inline-block;
-            padding-top: 3%;
-            width: 30%;
-            background-color: purple;
-            position: fixed;
-        }
-        .admin-operation ul li > a{
-            color:whitesmoke;
-            text-decoration: none;
-        }
-        .heading{
-            background-color: purple; 
-            color: white; 
-            margin: 0; 
-            padding: 10px 0;
-        }
-        .feed{
-            list-style-type: none;
-        }
-        .feed > li{
-            border-left: 1px solid darkgrey; 
-            padding:0 0 1.2rem 1rem;
-        }
-    </style>
+    <link rel="stylesheet" href="/css/admin_home.css">
+
 </head>
 <body>
     
     <div class="emp">
-        <h2 class="heading">Admin Dashboard</h2>
+        <h1 class="heading">Admin Dashboard</h1>
+        <div class="admin-details">
+            <div>
+                <h2><%= adm.Name %></h2>
+            </div>
+            <div class="admin-links">
+                <a href="/admin/view/<%= adm.id %>">Profile</a>
+                <a href="/admin/sign-out">Sign Out</a>
+            </div>
+        </div>
         <ul style="list-style: none;" class="emp-list">
                                                             <!-- Displaying all employs to perform add/modify review options -->
             <% for(let employ of employs){ %>   

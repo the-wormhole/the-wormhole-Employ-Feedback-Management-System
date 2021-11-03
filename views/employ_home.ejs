@@ -45,11 +45,12 @@
                             <b>Remarks:</b><%= perform.review %>
                         </p>
                         <div class="feedbacks">
-                            <ul style="list-style-type: none;">
+                            <ul style="list-style-type: none; padding-left: 10px; margin-left:5px;">
                                 <% if(perform.feedbacks.length > 0){%>
                                     <% for(let feedback of perform.feedbacks){%> 
                                         <h4><%= feedback.byEmploy.Name %></h4>
                                         <p><%= feedback.content %></p>
+                                        <hr color="white">
                                     <% } %>
                                 <% }else{ %>
                                     <b>No Feedback recieved yet!!</b>
@@ -84,18 +85,20 @@
                             <input type="text" name="content" placeholder="Enter feedback..." required>
                             <button>Add</button>
                         </form>
-                        <ul style="list-style-type: none;">
+                        <ul style="list-style-type: none; border-left: 1px solid darkgray; padding-left: 10px;margin-left: 20px;">
                             <% if(perform.feedbacks.length > 0 ){ %>
                                 <% for(let feed of perform.feedbacks){%>
-                                    <li>
-                                        <h4><%= feed.byEmploy.Name %></h4>
+                                    <li style =" padding-top: 8px;">
+                                        <h4 style="margin-top: 0;"><%= feed.byEmploy.Name %></h4>
                                         <p>
                                             <%= feed.content %>
                                         </p>
                                         <% if(locals.user.id == feed.byEmploy.id){ %>
                                             <a href="/feedback/delete/<%= feed.id %>"><button>Delete</button></a>
                                         <% } %>
+                                        
                                     </li>
+                                    <hr color="white">
                                 <% } %>
                             <% }else{ %>
                                 <b>No Feedbacks yet!!</b>

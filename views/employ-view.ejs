@@ -11,7 +11,13 @@
     </style>
 </head>
 <body>
-    <a class = "links" href="/">Home</a>
+
+    <% if(locals.user.collection.modelName == 'Admin'){ %>  
+        <a class = "links" href="/admin/home">Home</a>
+    <% }else{ %>
+        <a href="/" class="links">Home</a>
+    <% } %>
+
     <main>
         <div class="view-container">
             <ul>

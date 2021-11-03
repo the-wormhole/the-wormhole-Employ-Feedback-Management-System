@@ -1,0 +1,88 @@
+body{
+    margin: 0;
+    font-family: sans-serif;
+}
+.emp{
+    width: 60%;
+    display: inline-block;
+}
+.admin-details{
+    background-color: lightgray;
+    display: flex;
+    justify-content: space-between;
+    padding-top: 10px;
+}
+.admin-details div h3{
+    margin:0;
+}
+.admin-links{
+    margin-right: 10px;
+}
+.admin-links a{
+    text-decoration: none;
+    /* background-color: blueviolet; */
+    color: blueviolet;
+    font-size: 1.1rem;
+    padding: 1px;
+    border-radius: 10%;
+}
+.admin-links a:hover{
+    color: black;
+    text-decoration: underline;
+}
+.emp-list{
+    margin-top: 0;
+    border-top: 1px solid white;
+}
+.emp-list > li{
+    height: auto;
+    background-color: lightgray;
+    margin-bottom: 1%;
+    padding: 1rem;
+}
+.details{
+    display: inline-block;
+    width: 60%;
+}
+.links{
+    display: inline-block;
+}
+.links a{
+    color: black;
+    text-decoration: none;
+}
+.links a:hover{
+    text-decoration: underline;
+}
+.review{
+    width: 100%;
+    display: inline-block;
+    margin-top: 2%;
+}
+.admin-operation{
+    border-left: 1px solid black;
+    height: 100vh;
+    vertical-align: top;
+    display: inline-block;
+    padding-top: 3%;
+    width: 30%;
+    background-color: purple;
+    position: fixed;
+}
+.admin-operation ul li > a{
+    color:whitesmoke;
+    text-decoration: none;
+}
+.heading{
+    background-color: purple; 
+    color: white; 
+    margin: 0; 
+    padding: 10px 0;
+}
+.feed{
+    list-style-type: none;
+}
+.feed > li{
+    border-left: 1px solid darkgrey; 
+    padding:0 0 1.2rem 1rem;
+}

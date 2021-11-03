@@ -1,0 +1,44 @@
+body{
+    font-family: sans-serif;
+}
+.form-container{
+    display: flex;
+    justify-content: space-around;
+    background-color: purple;
+    width: 70%;
+    margin-left: 15%;
+    margin-top: 20vh;
+    padding-top: 5vh;
+    padding-bottom: 5vh;
+    color: white;
+    font-size: 1.2rem;
+}
+.form-styling input{
+    margin: 10px;
+    padding: 5px;
+    
+}
+.form-color{
+    background-color: gray;
+    padding: 2%;
+}
+.button-styling{
+    background-color:blueviolet;
+    color: white;
+    padding: 0 5% 0 5%;
+    height: 1.8rem;
+    font-size: 1.2rem;
+    border-radius: 15%;
+    border: 0;
+}
+.button-styling:hover{
+    background-color: black;
+}
+.emp-login{
+    color: white; 
+    background-color: blueviolet; 
+    text-decoration: none;
+}
+.emp-login:hover{
+    background-color: black
+}

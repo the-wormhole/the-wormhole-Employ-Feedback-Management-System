@@ -62,6 +62,7 @@ module.exports.home = async function(req,res){
 
         let employs = await Employ.find();
         let reviews = await Performance.find()
+
         .populate({
             path:'feedbacks',
             options:{ sort: '-createdAt'},
@@ -70,10 +71,16 @@ module.exports.home = async function(req,res){
             }
         }).sort('-createdAt');
         
+        let admins = await Admin.find();
+        let adm = await Admin.findById(req.user.id);
+
         return res.render('admin_home',{
             employs:employs,
-            reviews:reviews
+            reviews:reviews,
+            admins:admins,
+            adm : adm
         });
+
     }else{
         console.log('not an Admin!!');
         return res.redirect('back');
@@ -202,15 +209,15 @@ module.exports.employForm = async function(req,res){
 module.exports.view = async function(req,res){                              //Function to view employ
 
     try{
-        let empId = req.params.id;
+        let admId = req.params.id;
         let userPrototype =  Object.getPrototypeOf(res.locals.user);      
 
         if(userPrototype == Admin.prototype || res.locals.user.isAdmin ){       // Checking if it is the admin that is viewing the employ information
             
-            let employ = await Employ.findById(empId);
+            let admin = await Admin.findById(admId);
 
             return res.render('employ-view',{
-                employ:employ
+                employ:admin
             });
 
         }else{
