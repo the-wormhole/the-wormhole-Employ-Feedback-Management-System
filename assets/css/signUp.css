@@ -23,7 +23,7 @@ body{
     padding: 2%;
 }
 .button-styling{
-    background-color:blueviolet;
+    background-color:black;
     color: white;
     padding: 0 5% 0 5%;
     height: 1.8rem;
@@ -32,7 +32,8 @@ body{
     border: 0;
 }
 .button-styling:hover{
-    background-color: black;
+    background-color: blueviolet;
+    cursor: pointer;
 }
 .emp-login{
     color: white; 

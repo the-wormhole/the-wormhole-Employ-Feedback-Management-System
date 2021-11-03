@@ -91,6 +91,46 @@
                 <a href="/admin/new-employ">Add a new Employ</a>
             </li>
         </ul>
+        <div id="admins">
+            <h3>Admins</h3>
+            <hr color="white">
+            <ul class="admin-list" style="list-style-type: none;">
+                <% for(let admin of admins){ %>
+                    <% if(admin.id != locals.user.id){ %>
+                    <li>
+                        <span>
+                            <b>Name:</b><%= admin.Name %>
+                        </span>
+                        <span>
+                            <b>Email:</b><%= admin.Email %>
+                        </span>
+                    </li>
+                    <!-- <hr color="white"> -->
+                    <% } %>
+
+                <% } %>
+            </ul>
+        </div>
+        <div id="employs">
+            <h3>Employees</h3>
+            <hr color="white">
+            <ul class="admin-list" style="list-style-type: none;">
+                <% for(let employ of employs){ %>
+                    <% if(!employ.isAdmin){ %>
+                    <li>
+                        <span>
+                            <b>Name:</b><%= employ.Name %>
+                        </span>
+                        <span>
+                            <b>Email:</b><%= employ.Email %>
+                        </span>
+                    </li>
+                    <!-- <hr color="white"> -->
+                    <% } %>
+
+                <% } %>
+            </ul>
+        </div>
     </aside>
 
 </body>
