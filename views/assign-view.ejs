@@ -21,21 +21,27 @@
         <% if(employs.length == 1){ %>          <!-- If all Employees assigned except the admin himself then display this message -->
             <p>All employs assigned for feedback!</p>
         <% } %>
+        <% var flag = 0 %>
         <% for(let employ of employs){ %> 
             <!--  -->
-            <% if(employ.id != locals.user.emp_id && employ.id != rev.EmpId){ %>  <!-- An Admin can't assign a review to himself for feedback and an employ can't review his own performance -->
+            <% if(employ.id != locals.user.emp_id && employ.id != rev.EmpId.id){ %>  <!-- An Admin can't assign a review to himself for feedback and an employ can't review his own performance -->
 
                         <div class="details">
                             <div>
+                                <!-- <%= employ.id %>
+                                <%= rev.EmpId.id %> -->
                                 <span><b>Employ Name:</b>&nbsp; <%= employ.Name %></span>
                                 <span><b>Employ Email:</b>&nbsp; <%= employ.Email %></span>   
                             </div>
                             <div style="margin-left:5%"><a href="/performance/assign/<%= employ.id %>/<%= rev.id %>"><button class="btn"type="submit">Assign</button></a></div>
                         </div>
                         <hr color="white">
-
+                <% flag = 1 %>
             <% } %>
 
+        <% } %>
+        <% if(flag == 0){ %>
+            <p style="margin: 0; padding:5px 0 5px 0;">All employs assigned for feedback!</p>
         <% } %>
     </div>
 </body>

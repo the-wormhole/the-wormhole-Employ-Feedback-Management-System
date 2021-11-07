@@ -161,10 +161,9 @@ module.exports.deleteEmploy = async function(req,res){
                 for(let feedback of performance.feedbacks){
                     await Feedback.findByIdAndDelete(feedback);                        // Deleting the feedbacks he received on his performance review
                 }
+                await Employ.updateMany({},{$pull:{participations:performance.id}});       // Unassigning the Performance from employees
+                performance.remove();
             }
-
-            await Employ.updateMany({},{$pull:{participations:performance.id}});       // Unassigning the Performance from employees
-            performance.remove();
 
             //let feedbacks = await Feedback.deleteMany({byEmploy:EmpId});                // Deleting all the feedbacks given by the Employee
             let feedback  = await Feedback.findOne({byEmploy:EmpId});

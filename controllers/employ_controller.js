@@ -77,7 +77,7 @@ module.exports.create = async function(req,res){
 
     if(req.body.password != req.body.confirmPassword){
         return res.redirect('back');
-   }
+    }
    try{
         let employ = await Employ.findOne({Email:req.body.Email});
 
