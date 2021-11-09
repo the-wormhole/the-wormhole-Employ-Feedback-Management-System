@@ -1,5 +1,5 @@
 const express = require('express');
-const port = 8000;
+const port = process.env.PORT || 8000;
 const env = require('dotenv').config();
 const cookieParser = require('cookie-parser');
 const db = require('./config/mongoose');        // MongoDb config set
