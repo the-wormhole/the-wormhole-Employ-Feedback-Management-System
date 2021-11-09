@@ -9,18 +9,21 @@
     <link rel="stylesheet" href="/css/assign-view.css">
 </head>
 <body>
-    <p class="rating">
-        <span><b>Name:</b><%= rev.EmpId.Name %></span>
-        <span style="margin-left: 10%; "><b>Rating:</b>
-            <span><% for(let i=1;i <= rev.rating;i++){ %><i class="fa fa-star"></i><% } %></span>
-            <span style="color: grey; margin-left: -5px;"><% for(let i = rev.rating + 1;i <= 10;i++){ %><i class="fa fa-star"></i><% } %></span>
-        </span><br>
-        <span><b>Remarks:</b><%= rev.review %></span>
-    </p>
+    <div class="rating">
+        <div style="flex-grow: 1;">
+            <span><b>Name:</b><%= rev.EmpId.Name %></span>
+            <span style="margin-left: 10%; "><b>Rating:</b>
+                <span><% for(let i=1;i <= rev.rating;i++){ %><i class="fa fa-star"></i><% } %></span>
+                <span style="color: grey; margin-left: -5px;"><% for(let i = rev.rating + 1;i <= 10;i++){ %><i class="fa fa-star"></i><% } %></span>
+            </span><br>
+            <span><b>Remarks:</b><%= rev.review %></span>
+        </div>
+        <div class = "home">
+            <a href="/admin/home">Home</a>
+        </div>
+    </div>
     <div class="list-container">
-        <% if(employs.length == 1){ %>          <!-- If all Employees assigned except the admin himself then display this message -->
-            <p>All employs assigned for feedback!</p>
-        <% } %>
+
         <% var flag = 0 %>
         <% for(let employ of employs){ %> 
             <!--  -->

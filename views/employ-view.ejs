@@ -26,7 +26,7 @@
                 <li><b>Email:</b> <%= employ.Email %></li>
 
                 
-                <li><b>Admin:</b> <% if(employ.isAdmin){ %> Yes <% }else{ %> No <% } %></li>
+                <li><b>Admin:</b> <% if(employ.isAdmin || locals.user.collection.modelName == 'Admin'){ %> Yes <% }else{ %> No <% } %></li>
             </ul>
         </div>
 

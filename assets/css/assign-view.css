@@ -7,6 +7,20 @@ body{
     margin: 0;
     padding: 10px 0 10px 10px;
     font-size: large;
+    display: flex;
+    justify-content: space-between;
+}
+.home{
+    margin: 0.5% 5% 0 0;
+}
+.home a{
+    text-decoration: none;
+    font-weight: bold;
+    color: blueviolet;
+}
+.home a:hover{
+    text-decoration: underline;
+    color: black;
 }
 .list-container{
     background-color: purple;
