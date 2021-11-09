@@ -83,7 +83,7 @@
                         </p>
                         <form action="/feedback/add/<%= perform.id %>" method="post">
                             <input type="text" name="content" placeholder="Enter feedback..." required>
-                            <button>Add</button>
+                            <button class="btn">Add</button>
                         </form>
                         <ul style="list-style-type: none; border-left: 1px solid darkgray; padding-left: 10px;margin-left: 20px;">
                             <% if(perform.feedbacks.length > 0 ){ %>
@@ -94,7 +94,7 @@
                                             <%= feed.content %>
                                         </p>
                                         <% if(locals.user.id == feed.byEmploy.id){ %>
-                                            <a href="/feedback/delete/<%= feed.id %>"><button>Delete</button></a>
+                                            <a href="/feedback/delete/<%= feed.id %>"><button class="btn">Delete</button></a>
                                         <% } %>
                                         
                                     </li>

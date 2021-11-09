@@ -13,6 +13,18 @@ body{
     color: black;
     text-decoration:underline;
 }
+.btn{
+    background-color: purple;
+    color: white;
+    border: 0;
+    border-radius: 10%;
+    padding: 1% 0.3rem 1%;
+    font-weight: bold;
+}
+.btn:hover{
+    background-color: black;
+    cursor: pointer;
+}
 main{
     display: inline-block;
     width: 70%;
