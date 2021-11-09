@@ -32,7 +32,7 @@ passport.use('employ-local',new LocalStrategy({     //Local Strategy for Employ
     Employ.findOne({Email:Email},function(err,employ){
         if(err){
             console.log("Error in finding employ --> Passport");
-            req.flash('error',err);
+            //req.flash('error',err);
             return done(err);
         }
         if(!employ || employ.password != password){
@@ -98,7 +98,7 @@ passport.setAuthenticatedUser = function(req,res,next){         //<<<<<---------
     if(req.isAuthenticated()){
 
         res.locals.user = req.user;                 //<<<<<<---- passport after authentication places the user in the req(req.user contains the authenticated user)
-        console.log("Setting up user",req.user)
+        //console.log("Setting up user",req.user)
     }
     next();
     //return res.redirect('/customer/sign-in');

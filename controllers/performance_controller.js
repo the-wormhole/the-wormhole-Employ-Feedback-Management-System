@@ -18,7 +18,7 @@ module.exports.empPerformance = async function(req,res){        // Searching for
             });
 
         }else{
-                console.log('The user is not an Admin!!')
+                //console.log('The user is not an Admin!!')
                 return res.redirect('back');
         }
     }catch(err){
@@ -39,10 +39,10 @@ module.exports.create = async function(req,res){        // Create a new employ r
                 rating: req.body.rating,
                 review: req.body.review
             });
-            console.log('Review added!!',performance);
+            //console.log('Review added!!',performance);
             return res.redirect('/admin/home');
         }else{
-            console.log('The user is not an Admin!!')
+           // console.log('The user is not an Admin!!')
             return res.redirect('back');
         }
     }catch(err){
@@ -62,11 +62,11 @@ module.exports.update = async function(req,res){        // Update an existing em
             performance.rating = req.body.rating;
             performance.review = req.body.review;
             performance.save();
-            console.log('Updated the review!!', performance);
+            //console.log('Updated the review!!', performance);
             return res.redirect('/admin/home');
 
         }else{
-            console.log('The user is not an Admin!!')
+            //console.log('The user is not an Admin!!')
             return res.redirect('back');
         }
     }catch(err){
@@ -91,7 +91,7 @@ module.exports.assignView = async function(req,res){                        //Fu
                 rev:review
             })
         }else{
-            console.log('The user is not an Admin!!')
+            //console.log('The user is not an Admin!!')
             return res.redirect('back');
         }
     }catch(err){
@@ -113,11 +113,11 @@ module.exports.assign = async function(req,res){
             let employ = await Employ.findById(EId)                         //Searching the Employ by his id and pushing the review id into the participations array
             await employ.participations.push(RId);
             employ.save();
-            console.log('Review assigned to:',employ.Name);
+            //console.log('Review assigned to:',employ.Name);
             return res.redirect('back');
 
         }else{
-            console.log('The user is not an Admin!!')
+            //console.log('The user is not an Admin!!')
             return res.redirect('back');
         }
     }catch(err){

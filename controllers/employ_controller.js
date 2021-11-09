@@ -55,7 +55,7 @@ module.exports.home = async function(req,res){
             });
         }else{
 
-            console.log('Access with Employ login!');       //Destroying the previously created admin session to login as an employ
+            //console.log('Access with Employ login!');       //Destroying the previously created admin session to login as an employ
             req.logout();
             return res.redirect('/employ/sign-in');
         }
@@ -90,7 +90,7 @@ module.exports.create = async function(req,res){
             },function(err,newEmploy){
                 if(err){console.log(err,"Error inside create function on Employ!!");}
                 
-                console.log("*******",newEmploy);
+                //console.log("*******",newEmploy);
                 if(res.locals.user){
                     let userPrototype =  Object.getPrototypeOf(res.locals.user);
                     if(userPrototype == Admin.prototype || res.locals.user.isAdmin){
@@ -102,7 +102,7 @@ module.exports.create = async function(req,res){
                 }
             })
         }else{
-            console.log('Employ already exists in database!!')
+            //console.log('Employ already exists in database!!')
             return res.redirect('back');
         }
     }catch(err){

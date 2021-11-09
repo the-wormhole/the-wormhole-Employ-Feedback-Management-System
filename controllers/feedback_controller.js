@@ -37,10 +37,10 @@ module.exports.delete = async function(req,res){            // fucntion to delet
 
             await Performance.findByIdAndUpdate(PId , {$pull: {feedbacks:FId}}, {useFindAndModify: false});         //Removing the feedback from the feedbacks array
 
-            console.log('Deleted the Feedback!');
+            //console.log('Deleted the Feedback!');
             return res.redirect('back');
         }else{
-            console.log('Un-Authorised!!!');
+            //console.log('Un-Authorised!!!');
             return res.redirect('back');
         }
 

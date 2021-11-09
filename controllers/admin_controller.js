@@ -28,15 +28,15 @@ exports.create = async function(req,res){
                 },function(err,newAdmin){
                     if(err){console.log(err,"Error inside create funtion on Employ!!");}
                     
-                    console.log("*******",newAdmin);
+                    //console.log("*******",newAdmin);
                     return res.redirect('/admin/sign-in');
                 });
             }else{
-                console.log('An Admin should be an Employ!!');
+                //console.log('An Admin should be an Employ!!');
                 return res.redirect('back');
             }
         }else{
-            console.log('Already an Admin!!');
+            //console.log('Already an Admin!!');
             return res.redirect('back');
         }
     }catch(err){
@@ -82,7 +82,7 @@ module.exports.home = async function(req,res){
         });
 
     }else{
-        console.log('not an Admin!!');
+        //console.log('not an Admin!!');
         return res.redirect('back');
     }
 }
@@ -131,12 +131,12 @@ module.exports.newAdmin = async function(req,res){
             },function(err,newAdmin){
                 if(err){console.log(err,"Error inside create funtion on Employ!!");}
                 
-                console.log("******* Admin created",newAdmin);
+                //console.log("******* Admin created",newAdmin);
                 return res.redirect('back');
             });
         }else{
             
-            console.log('Already an Admin!!');
+            //console.log('Already an Admin!!');
             return res.redirect('back');
         }   
                      
@@ -178,7 +178,7 @@ module.exports.deleteEmploy = async function(req,res){
             //     }
             // }
             
-            console.log('Employ and associated reviews and feedbacks deleted!!',employ);
+            //console.log('Employ and associated reviews and feedbacks deleted!!',employ);
             return res.redirect('back');
         }else{
             return res.redirect('/admin/sign-in');
