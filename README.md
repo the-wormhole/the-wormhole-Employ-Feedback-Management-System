@@ -37,7 +37,7 @@ Later on the same property is used to give and take access from the user based o
 
 This diagram represents the class Architecture employed to design and model the system of the Employ Feedback management system. It shows how different models are related to 
 each other, by specifying the aggregations and generalzations involved. This diagram was a part of the Software Development cycle that I sticked to, while developing this project.
-This image file is a pictorial representation of this [file](https://github.com/the-wormhole/the-wormhole-Employ-Feedback-Management-System/blob/cd8bf1a60a652d4aa4ceee20d22eb511624d7994/Software%20Design%20and%20Architecture/Class%20Diagram.mdj), which can be opened in Star UML software.
+This image file is a pictorial representation of the file [Class Diagram.mdj](https://github.com/the-wormhole/the-wormhole-Employ-Feedback-Management-System/blob/cd8bf1a60a652d4aa4ceee20d22eb511624d7994/Software%20Design%20and%20Architecture/Class%20Diagram.mdj), which can be opened in Star UML software.
 
 A rough understanding of functionalities, and data stored in these models can be made by going through the 
 [class.txt](https://github.com/the-wormhole/the-wormhole-Employ-Feedback-Management-System/blob/cd8bf1a60a652d4aa4ceee20d22eb511624d7994/Software%20Design%20and%20Architecture/classes.txt) 
