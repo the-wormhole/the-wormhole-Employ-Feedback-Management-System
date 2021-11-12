@@ -9,9 +9,9 @@ version for the purpose of viewing its basic functionality.
 
 The Link for the same is :- https://employ-feedback-management.herokuapp.com/
 
-A proper [video]() guide for this can be found at this youtube link
+A proper [video](https://youtu.be/uPLQR5Zl49U) guide for this can be found at this youtube link
 
-` Link here `
+**[Link](https://youtu.be/uPLQR5Zl49U)**
 
 Steps for running this project :-
 1. Clone this git repository, making sure you have Node and npm installed on your system.
